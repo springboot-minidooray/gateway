@@ -6,6 +6,6 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class CommentDto {
-    private String writer;
+    private String writerId;
     private String contents;
 }

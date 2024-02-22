@@ -13,6 +13,6 @@ public class TaskDto {
     private String status;
     private String taskManagerId;
     private Long milestoneId;
-    private List<TagDto> tags;
+    private List<String> tags;
     private List<CommentDto> comments;
 }
