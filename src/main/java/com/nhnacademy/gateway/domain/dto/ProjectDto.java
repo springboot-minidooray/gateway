@@ -1,5 +1,6 @@
 package com.nhnacademy.gateway.domain.dto;
 
+import com.nhnacademy.gateway.domain.Member;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
