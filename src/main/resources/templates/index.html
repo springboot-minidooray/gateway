@@ -5,9 +5,13 @@
     <title>ProjectList</title>
 </head>
 <body>
-    <p th:text="${userId}">userId</p>
-<form action="/logout" method="post">
-    <button type="submit">Logout</button>
-</form>
+    <H4>welcome</H4>
+    <p th:text="'id : ' + ${session.userId}">userId</p>
+    <form action="/logout" method="post">
+        <button type="submit">Log out</button>
+    </form>
+    <form action="/signout" method="post">
+        <button type="submit">sign out</button>
+    </form>
 </body>
 </html>

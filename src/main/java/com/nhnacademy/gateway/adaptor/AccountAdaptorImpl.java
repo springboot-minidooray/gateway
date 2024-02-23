@@ -3,6 +3,7 @@ package com.nhnacademy.gateway.adaptor;
 import com.nhnacademy.gateway.config.ApiProperties;
 import com.nhnacademy.gateway.domain.Account;
 import com.nhnacademy.gateway.domain.dto.AccountDto;
+import com.nhnacademy.gateway.exception.UserAlreadyExistException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
@@ -24,12 +25,12 @@ public class AccountAdaptorImpl implements AccountAdaptor{
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
 
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
-        String url = apiProperties.getAccountApi() + "/accounts/{id}";
+        String url = apiProperties.getAccountApi() + "/accounts/" + id;
         ResponseEntity<AccountDto> exchange = restTemplate.exchange(url,
                 HttpMethod.GET,
                 requestEntity,
                 new ParameterizedTypeReference<AccountDto>() {
-                }, id);
+                });
         if (exchange.getStatusCode() != HttpStatus.OK) {
             throw new RuntimeException();
         }
@@ -44,13 +45,13 @@ public class AccountAdaptorImpl implements AccountAdaptor{
 
         HttpEntity<AccountDto> requestEntity = new HttpEntity<>(account, httpHeaders);
         String url = apiProperties.getAccountApi() + "/accounts";
-        ResponseEntity<AccountDto> exchange = restTemplate.exchange(url,
+        ResponseEntity<Account> exchange = restTemplate.exchange(url,
                 HttpMethod.POST,
                 requestEntity,
-                new ParameterizedTypeReference<>() {
+                new ParameterizedTypeReference<Account>() {
                 });
-        if (exchange.getStatusCode() != HttpStatus.CREATED) {
-            throw new RuntimeException();
+        if (exchange.getBody() == null || exchange.getBody().getId() == null) {
+            throw new UserAlreadyExistException("user Already Exists");
         }
     }
 

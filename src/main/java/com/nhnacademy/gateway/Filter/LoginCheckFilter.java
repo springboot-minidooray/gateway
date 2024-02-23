@@ -15,7 +15,7 @@ public class LoginCheckFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
         String path = request.getRequestURI();
-        if ("/login".equals(path)) {
+        if ("/login".equals(path) || "/signup".equals(path)) {
             filterChain.doFilter(request, response);
             return;
         }
