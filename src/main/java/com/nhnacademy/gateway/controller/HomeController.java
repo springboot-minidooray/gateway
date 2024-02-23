@@ -12,13 +12,6 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(HttpServletRequest request, Model model) {
-        HttpSession session = request.getSession(false);
-        if (session != null && session.getAttribute("userId") != null) {
-            String userId = (String) session.getAttribute("userId");
-            model.addAttribute("userId", userId);
-            return "index";
-        } else {
-            return "redirect:/login";
-        }
+        return "index";
     }
 }

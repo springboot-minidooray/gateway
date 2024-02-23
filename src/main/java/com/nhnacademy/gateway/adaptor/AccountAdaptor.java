@@ -1,10 +1,11 @@
 package com.nhnacademy.gateway.adaptor;
 
 import com.nhnacademy.gateway.domain.Account;
+import com.nhnacademy.gateway.domain.dto.AccountDto;
 
 public interface AccountAdaptor {
-    Account getAccount(Long id);
-    void createAccount(Account account);
-    void updateAccount(Account account);
-    void deleteAccount(Long id);
+    AccountDto getAccount(String id);
+    void createAccount(AccountDto account);
+    void updateAccount(AccountDto account);
+    void deleteAccount(String id);
 }
