@@ -5,9 +5,9 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class TaskForListDto {
+public class TaskListDto {
     private String taskId;
-    private String projectName;
+    private String subject;
     private String status;
     private String projectManagerId;
 }

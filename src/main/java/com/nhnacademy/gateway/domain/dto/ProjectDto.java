@@ -11,6 +11,6 @@ import java.util.List;
 public class ProjectDto {
     private String projectName;
     private String projectManagerId;
-    private List<TaskDto> tasks;
+    private List<TaskListDto> tasks;
     private String status;
 }

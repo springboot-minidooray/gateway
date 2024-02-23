@@ -1,6 +1,9 @@
 package com.nhnacademy.gateway.controller;
 
+import com.nhnacademy.gateway.service.AccountService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,7 +15,9 @@ import javax.servlet.http.HttpSession;
 import java.util.Objects;
 
 @Controller
+@RequiredArgsConstructor
 public class LoginController {
+    private final AccountService accountService;
 
     @GetMapping("/login")
     public String getLoginPage(HttpServletRequest request) {
@@ -26,11 +31,14 @@ public class LoginController {
     @PostMapping("/login")
     public String login(@RequestParam("userId") String userId,
                         @RequestParam("password") String password,
-                        HttpServletRequest request) {
+                        HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
-
-        session.setAttribute("userId", userId);
-        return "redirect:/";
+        if (accountService.login(userId, password)) {
+            session.setAttribute("userId", userId);
+            return "redirect:/";
+        } else {
+            return "redirect:/login";
+        }
     }
 
     @PostMapping("/logout")

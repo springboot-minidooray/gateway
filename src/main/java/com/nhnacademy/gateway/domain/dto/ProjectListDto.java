@@ -4,7 +4,8 @@ import lombok.*;
 
 @Getter
 @AllArgsConstructor
-public class ProjectForListDto {
+public class ProjectListDto {
+    private Long projectId;
     private String projectName;
     private String projectManagerId;
     private String status;
