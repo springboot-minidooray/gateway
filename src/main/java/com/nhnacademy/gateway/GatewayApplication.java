@@ -14,9 +14,7 @@ public class GatewayApplication {
 
 }
 
-// Todo login check Filter
 // Todo application.properties address setting
-// Todo implement view
 // Todo implement service
 // Todo implement adaptor
 // Todo implement controller

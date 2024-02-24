@@ -1,5 +1,6 @@
 package com.nhnacademy.gateway.controller;
 
+import com.nhnacademy.gateway.domain.dto.ProjectDto;
 import com.nhnacademy.gateway.domain.dto.ProjectListDto;
 import com.nhnacademy.gateway.service.ProjectService;
 import lombok.RequiredArgsConstructor;
@@ -32,9 +33,11 @@ public class ProjectController {
         return "redirect:/";
     }
 
-
     @GetMapping("/{projectId}")
-    public String getProject(@PathVariable Long projectId) {
+    public String getProject(@PathVariable Long projectId, Model model) {
+        ProjectDto project = projectService.getProject(projectId);
+        model.addAttribute("project", project);
+        model.addAttribute("projectId", projectId);
 
         return "project";
     }

@@ -34,7 +34,7 @@
         <tbody>
         <tr th:each="task : ${projectForListDto.tasks}">
             <td>
-                <a th:href="@{'/tasks/' + ${task.taskId}}" th:text="${task.subject}">subject</a>
+                <a th:href="@{'/projects/' + ${projectId} + '/tasks/' + ${task.taskId}}" th:text="${task.subject}">subject</a>
             </td>
             <td th:text="'project Manager : ' + ${task.projectManagerId}">projectManager</td>
             <td th:text="${task.status}">status</td>
