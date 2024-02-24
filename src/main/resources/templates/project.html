@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Project</title>
+</head>
+<body>
+<h2>Project</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>projectName</th>
+            <th>projectManager</th>
+            <th>status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td th:text="${project.projectName}">projectName</td>
+            <td th:text="${project.projectManagerId}">projectManager</td>
+            <td th:text="${project.status}">status</td>
+        </tr>
+        </tbody>
+    </table>
+    <h2>Tasks</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>subject</th>
+            <th>status</th>
+            <th>projectManagerId</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="task : ${projectForListDto.tasks}">
+            <td>
+                <a th:href="@{'/tasks/' + ${task.taskId}}" th:text="${task.subject}">subject</a>
+            </td>
+            <td th:text="'project Manager : ' + ${task.projectManagerId}">projectManager</td>
+            <td th:text="${task.status}">status</td>
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>

@@ -5,6 +5,7 @@
     <title>ProjectList</title>
 </head>
 <body>
+<h2>Project List</h2>
     <table>
         <thead>
             <tr>
@@ -14,11 +15,11 @@
             </tr>
         </thead>
         <tbody>
-            <tr th:each="project : ${projectForListDto}">
+            <tr th:each="project : ${projectListDto}">
                 <td>
                     <a th:href="@{'/projects/' + ${project.projectId}}" th:text="${project.projectName}">projectName</a>
                 </td>
-                <td th:text="${project.projectManager}">projectManager</td>
+                <td th:text="'project Manager : ' + ${project.projectManagerId}">projectManager</td>
                 <td th:text="${project.status}">status</td>
             </tr>
         </tbody>
