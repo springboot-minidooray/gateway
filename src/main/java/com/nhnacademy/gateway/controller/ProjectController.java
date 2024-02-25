@@ -6,9 +6,7 @@ import com.nhnacademy.gateway.service.ProjectService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -40,5 +38,22 @@ public class ProjectController {
         model.addAttribute("projectId", projectId);
 
         return "project";
+    }
+
+    @PostMapping
+    public String createProject(HttpServletRequest request, @RequestParam String projectName) {
+        HttpSession session = request.getSession(false);
+        if (session != null && session.getAttribute("userId") != null) {
+            String userId = String.valueOf(session.getAttribute("userId"));
+            projectService.createProject(projectName, userId);
+        }
+        return "redirect:/projects";
+    }
+
+    @PostMapping("/delete/{projectId}")
+    public String deleteProject(@PathVariable Long projectId) {
+        projectService.deleteProject(projectId);
+
+        return "redirect:/projects";
     }
 }

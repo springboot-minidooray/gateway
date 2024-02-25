@@ -1,9 +1,13 @@
 package com.nhnacademy.gateway.adaptor;
 
 import com.nhnacademy.gateway.config.ApiProperties;
+import com.nhnacademy.gateway.domain.Account;
 import com.nhnacademy.gateway.domain.Project;
+import com.nhnacademy.gateway.domain.dto.AccountDto;
 import com.nhnacademy.gateway.domain.dto.ProjectDto;
 import com.nhnacademy.gateway.domain.dto.ProjectListDto;
+import com.nhnacademy.gateway.domain.request.ProjectRegisterRequest;
+import com.nhnacademy.gateway.exception.UserAlreadyExistException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
@@ -57,8 +61,19 @@ public class ProjectAdaptorImpl implements ProjectAdaptor{
     }
 
     @Override
-    public void createProject(Project project) {
+    public void createProject(ProjectRegisterRequest projectRegisterRequest) {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
 
+        HttpEntity<ProjectRegisterRequest> requestEntity = new HttpEntity<>(projectRegisterRequest, httpHeaders);
+        ResponseEntity<ProjectDto> exchange = restTemplate.exchange(apiProperties.getTaskApi() + "/projects",
+                HttpMethod.POST,
+                requestEntity,
+                ProjectDto.class);
+        if (exchange.getStatusCode() != HttpStatus.CREATED) {
+            throw new RuntimeException();
+        }
     }
 
     @Override
@@ -67,7 +82,12 @@ public class ProjectAdaptorImpl implements ProjectAdaptor{
     }
 
     @Override
-    public void deleteProject(String id) {
-
+    public void deleteProject(Long projectId) {
+        String url = apiProperties.getTaskApi() + "/projects/{projectId}";
+        ResponseEntity<Void> exchange = restTemplate.exchange(url,
+                HttpMethod.DELETE,
+                null,
+                Void.class, projectId);
     }
+
 }

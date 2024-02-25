@@ -1,8 +1,10 @@
 package com.nhnacademy.gateway.domain.request;
 
-import lombok.Value;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
-@Value
+@Getter
+@AllArgsConstructor
 public class ProjectRegisterRequest {
     String projectName;
     String projectManagerId;

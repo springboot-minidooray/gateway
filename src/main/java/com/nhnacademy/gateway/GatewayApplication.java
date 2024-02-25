@@ -13,8 +13,3 @@ public class GatewayApplication {
 	}
 
 }
-
-// Todo application.properties address setting
-// Todo implement service
-// Todo implement adaptor
-// Todo implement controller
