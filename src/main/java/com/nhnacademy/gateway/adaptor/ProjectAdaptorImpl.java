@@ -71,9 +71,6 @@ public class ProjectAdaptorImpl implements ProjectAdaptor{
                 HttpMethod.POST,
                 requestEntity,
                 ProjectDto.class);
-        if (exchange.getStatusCode() != HttpStatus.CREATED) {
-            throw new RuntimeException();
-        }
     }
 
     @Override

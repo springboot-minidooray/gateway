@@ -48,7 +48,7 @@
           {   
               "ProjectId": "",
               "projectName": "프로젝트명",
-              "project manager": "관리자 이름",
+              "projectManagerId": "관리자 이름",
               "status": "활성"
           }
       ]
@@ -60,7 +60,7 @@
       ```json
       {
           "projectName": "프로젝트명",
-          "project manager": "관리자 이름",
+          "projectManagerId": "관리자 이름",
           "tasks": [
             {
               "taskId": "",
@@ -78,7 +78,7 @@
       ```json
       {
           "projectName": "프로젝트명",
-          "project manager": "관리자 이름"
+          "projectManagerId": "관리자 이름"
       }
       ```
 
